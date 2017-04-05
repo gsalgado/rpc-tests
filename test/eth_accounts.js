@@ -18,6 +18,8 @@ var asyncTest = function(host, done){
         assert.property(result, 'result', (result.error) ? result.error.message : 'error');
         assert.isArray(result.result, 'is array');
         // we should have at least one account here (coinbase)
+	// XXX: This fails because the coinbase is not returned in pyethapp's
+	// implementation of eth_accounts, but geth does that.
         assert.isTrue(Helpers.isAddress(result.result[0]));
     
         done();

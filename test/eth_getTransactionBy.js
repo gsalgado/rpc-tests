@@ -144,11 +144,14 @@ describe(method3, function(){
                 Helpers.send(host, {
                     id: config.rpcMessageId++, jsonrpc: "2.0", method: 'eth_sendTransaction',
                     
+		    // XXX: This is failing with the following error:
+		    // RPC error id=141 error=can not sign: no account for sender
+		    // And that's what's causing the test below to fail.
                     // PARAMETERS
                     params: [{
                         "from": config.senderAddress,
                         "to": config.contractAddress,
-                        "value" : 0
+                        "value" : "0x0"
                     }]
 
                 }, function(res){
